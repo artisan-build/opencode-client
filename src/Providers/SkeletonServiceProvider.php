@@ -1,0 +1,24 @@
+<?php
+
+declare(strict_types=1);
+
+namespace ArtisanBuild\Skeleton\Providers;
+
+use Illuminate\Support\ServiceProvider;
+use Override;
+
+class SkeletonServiceProvider extends ServiceProvider
+{
+    #[Override]
+    public function register(): void
+    {
+        $this->mergeConfigFrom(__DIR__.'/../../config/skeleton.php', 'skeleton');
+    }
+
+    public function boot(): void
+    {
+        $this->publishes([
+            __DIR__.'/../../config/skeleton.php' => config_path('skeleton.php'),
+        ], 'skeleton');
+    }
+}
